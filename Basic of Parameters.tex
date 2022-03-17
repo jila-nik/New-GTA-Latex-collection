@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+ 
+%%%%%%%%%%Begin Packages for parametrization%%%%%%%%%% 
+\usepackage{pgf,tikz,fp}
+\usetikzlibrary{math}
+\usepackage[margin=0.6in]{geometry}
+%%%%%%%%%%End Packages for parametrization%%%%%%%%%% 
+
+
+%%%%%%%%%%%%%Begin commands for solution environment%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifthen,framed}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Set boolean show True to see the solutions.
+\newboolean{show}
+\setboolean{show}{false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifthenelse{\boolean{show}}{\newenvironment{sol}{\begin{framed}\color{teal} \underline{\bf \Large Solution}: \\ \Fontskrivan }{\color{black}\end{framed}\color{black}}}{\let\sol\comment \let\endsol\endcomment}
+%%%%%%%%%%%%%End commands for solution environment%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{enumerate}
+%%%%%%%%%%%%% Set parameters:
+\tikzmath{\a=3; \b=4; \c=4;}
+%%%%%%%%%%%%%% Use them in the problem
+\item What is the derivative of $f(x)=\a x^3+\b x^2 +\c$?\\
+%%%%%%%%%%%%%% Solve for the solution
+\tikzmath{\athree=int(\a*3); \btwo=int(\b*2);}
+%%%%%%%%Solution:
+{\bf Solution:} $f'(x) =\athree x^2+\btwo x$ 
+%%%%%%%%%Or use the environment
+\ifthenelse{\boolean{show}}{\begin{sol}
+$f'(x) =\athree x^2+\btwo x$ 
+\end{sol}}{}
+\vskip 10pt
+\hrule
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Now if you want to choose nice parameters and change it within easily throughout the exam (this is not good for randomization of the exams but gives some insights in mass creating), then use binary \i, \j,\k. You will have 2^3 version of the question depending on (\i,\j,\k)= (1,1,1) or (1,1,0) or (1,0,1) or (0,1,1) or (1,0,0) or (0,1,0) or (0,0,1) or (0,0,0).
+\tikzmath{\i=0;\j=1;\k=1;}
+
+%%%%%%%%%%%%% Set parameters for many values:
+\tikzmath{\a=int(3*\i*\j*\k+4*(1-\i)*\j*\k+5*\i*(1-\j)*\k+2*\i*\j*(1-\k)+6*(1-\i)*(1-\j)*\k+7*(1-\i)*\j*(1-\k)+8*\i*(1-\j)*(1-\k)+9*(1-\i)*(1-\j)*(1-\k));
+%%%%%%%
+\b=int(6*\i*\j*\k+3*(1-\i)*\j*\k+7*\i*(1-\j)*\k+4*\i*\j*(1-\k)+5*(1-\i)*(1-\j)*\k+8*(1-\i)*\j*(1-\k)+9*\i*(1-\j)*(1-\k)+2*(1-\i)*(1-\j)*(1-\k));
+%%%%%%%
+\c=int(4*\i*\j*\k+3*(1-\i)*\j*\k+5*\i*(1-\j)*\k+2*\i*\j*(1-\k)+6*(1-\i)*(1-\j)*\k+7*(1-\i)*\j*(1-\k)+8*\i*(1-\j)*(1-\k)+9*(1-\i)*(1-\j)*(1-\k));}
+%%%%%%%%%%%%%% I may have made the above too complicated for a simple problem that it is. But it is the most general form.
+\item What is the derivative of $f(x)=\a x^3+\b x^2 +\c$?\\
+%%%%%%%%%%%%%% Solve for the solution
+\tikzmath{\athree=int(\a*3); \btwo=int(\b*2);}
+%%%%%%%%Solution:
+{\bf Solution:} $f'(x) =\athree x^2+\btwo x$ 
+%%%%%%%%%Or use the environment
+\ifthenelse{\boolean{show}}{\begin{sol}
+$f'(x) =\athree x^2+\btwo x$ 
+\end{sol}}{}
+\vskip 10pt
+\hrule
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% If you are interested in Linear algebra, you can still use those parameters:
+\item What is the inverse of $\left[\begin{array}{cc}
+    \a &\b  \\
+     \c& 1
+\end{array}\right]$ ?
+
+%%%%%%%%%%%Find the determinant:
+\tikzmath{\det=int(\a-\b*\c);}
+
+%%%This obliviously needs better work if it is sued for student. But each problem is different in tjose extra steps.
+{\bf Solution:} $\left[\begin{array}{cc}
+    \dfrac{1}{\det} &\dfrac{-\b}{\det}  \\&\\
+     \dfrac{-\c}{\det}& \dfrac{\a}{\det}
+\end{array}\right]$
+\vskip 10pt
+\hrule
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%If you are interested in problems with graphs:
+
+\item Draw the graph of derivative of $f(x)$.
+
+\begin{center}\begin{tikzpicture}
+\foreach \x/\y/\pos/\txt in {2/0/right/x,0/3/above/y}
+\draw [thick,->](0,0)--(\x,\y)node[\pos]{$\txt$};
+\draw [blue, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=-1:1.5](\t,{0.2*(\a*(\t)^3-\b*(\t)^2+\c)})node[above]{$f(x)$};
+\end{tikzpicture}\end{center}
+
+{\bf Solution:}
+
+\begin{center}\begin{tikzpicture}
+\foreach \x/\y/\pos/\txt in {2/0/right/x,0/3/above/y}
+\draw [thick,->](0,0)--(\x,\y)node[\pos]{$\txt$};
+\draw [gray, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=1.5:-1](\t,{0.2*(\a*(\t)^3-\b*(\t)^2+\c)})node[below]{$f(x)$};
+\draw [red, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=-1:1.5](\t,{0.12*(\athree*(\t)^2-\btwo*\t})node[above]{$f'(x)$};
+\end{tikzpicture}\end{center}
+
+
+\end{enumerate}
+
+\end{document}
