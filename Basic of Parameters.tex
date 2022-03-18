@@ -2,7 +2,7 @@
 \usepackage{amsmath, amsthm, amssymb}
  
 %%%%%%%%%%Begin Packages for parametrization%%%%%%%%%% 
-\usepackage{pgf,tikz}
+\usepackage{pgf,tikz,fp}
 \usetikzlibrary{math}
 \usepackage[margin=0.6in]{geometry}
 %%%%%%%%%%End Packages for parametrization%%%%%%%%%% 
@@ -59,10 +59,10 @@ $f'(x) =\athree x^2+\btwo x$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%Q3: If you are interested in problems with graphs:
 
-\item [Q3] Draw the graph of derivative of $f(x)$.
+\item [Q3] Graph the function of derivative of $f(x)$.
 
 \begin{center}\begin{tikzpicture}
-\foreach \x/\y/\pos/\txt in {2/0/right/x,0/3/above/y}
+\foreach \x/\y/\pos/\txt in {2.5/0/right/x,0/2/above/y}
 \draw [thick,->](0,0)--(\x,\y)node[\pos]{$\txt$};
 \draw [blue, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=-1:1.5](\t,{0.2*(\a*(\t)^3-\b*(\t)^2+\c)})node[above]{$f(x)$};
 \end{tikzpicture}\end{center}
@@ -70,10 +70,10 @@ $f'(x) =\athree x^2+\btwo x$
 {\bf Solution:}
 
 \begin{center}\begin{tikzpicture}
-\foreach \x/\y/\pos/\txt in {2/0/right/x,0/3/above/y}
+\foreach \x/\y/\pos/\txt in {2.5/0/right/x,0/2.2/above/y}
 \draw [thick,->](0,0)--(\x,\y)node[\pos]{$\txt$};
 \draw [gray, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=1.5:-1](\t,{0.2*(\a*(\t)^3-\b*(\t)^2+\c)})node[below]{$f(x)$};
-\draw [red, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=-1:1.5](\t,{0.12*(\athree*(\t)^2-\btwo*\t})node[above]{$f'(x)$};
+\draw [red, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=1.5:-1](\t,{0.12*(\athree*(\t)^2-\btwo*\t})node[left]{$f'(x)$};
 \end{tikzpicture}\end{center}
 \vskip 10pt
 \hrule
