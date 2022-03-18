@@ -2,7 +2,7 @@
 \usepackage{amsmath, amsthm, amssymb}
  
 %%%%%%%%%%Begin Packages for parametrization%%%%%%%%%% 
-\usepackage{pgf,tikz,fp}
+\usepackage{pgf,tikz}
 \usetikzlibrary{math}
 \usepackage[margin=0.6in]{geometry}
 %%%%%%%%%%End Packages for parametrization%%%%%%%%%% 
@@ -24,8 +24,8 @@
 \begin{enumerate}
 %%%%%%%%%%%%% Set parameters:
 \tikzmath{\a=3; \b=4; \c=4;}
-%%%%%%%%%%%%%% Use them in the problem
-\item What is the derivative of $f(x)=\a x^3+\b x^2 +\c$?\\
+%%%%%%%%%%%%%%Q 1 Use them in the problem
+\item [Q1] What is the derivative of $f(x)=\a x^3+\b x^2 +\c$?\\
 %%%%%%%%%%%%%% Solve for the solution
 \tikzmath{\athree=int(\a*3); \btwo=int(\b*2);}
 %%%%%%%%Solution:
@@ -39,30 +39,9 @@ $f'(x) =\athree x^2+\btwo x$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% Now if you want to choose nice parameters and change it within easily throughout the exam (this is not good for randomization of the exams but gives some insights in mass creating), then use binary \i, \j,\k. You will have 2^3 version of the question depending on (\i,\j,\k)= (1,1,1) or (1,1,0) or (1,0,1) or (0,1,1) or (1,0,0) or (0,1,0) or (0,0,1) or (0,0,0).
-\tikzmath{\i=0;\j=1;\k=1;}
 
-%%%%%%%%%%%%% Set parameters for many values:
-\tikzmath{\a=int(3*\i*\j*\k+4*(1-\i)*\j*\k+5*\i*(1-\j)*\k+2*\i*\j*(1-\k)+6*(1-\i)*(1-\j)*\k+7*(1-\i)*\j*(1-\k)+8*\i*(1-\j)*(1-\k)+9*(1-\i)*(1-\j)*(1-\k));
-%%%%%%%
-\b=int(6*\i*\j*\k+3*(1-\i)*\j*\k+7*\i*(1-\j)*\k+4*\i*\j*(1-\k)+5*(1-\i)*(1-\j)*\k+8*(1-\i)*\j*(1-\k)+9*\i*(1-\j)*(1-\k)+2*(1-\i)*(1-\j)*(1-\k));
-%%%%%%%
-\c=int(4*\i*\j*\k+3*(1-\i)*\j*\k+5*\i*(1-\j)*\k+2*\i*\j*(1-\k)+6*(1-\i)*(1-\j)*\k+7*(1-\i)*\j*(1-\k)+8*\i*(1-\j)*(1-\k)+9*(1-\i)*(1-\j)*(1-\k));}
-%%%%%%%%%%%%%% I may have made the above too complicated for a simple problem that it is. But it is the most general form.
-\item What is the derivative of $f(x)=\a x^3+\b x^2 +\c$?\\
-%%%%%%%%%%%%%% Solve for the solution
-\tikzmath{\athree=int(\a*3); \btwo=int(\b*2);}
-%%%%%%%%Solution:
-{\bf Solution:} $f'(x) =\athree x^2+\btwo x$ 
-%%%%%%%%%Or use the environment
-\ifthenelse{\boolean{show}}{\begin{sol}
-$f'(x) =\athree x^2+\btwo x$ 
-\end{sol}}{}
-\vskip 10pt
-\hrule
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%% If you are interested in Linear algebra, you can still use those parameters:
-\item What is the inverse of $\left[\begin{array}{cc}
+%%%%%%%%%Q2: If you are interested in Linear algebra, you can still use those parameters:
+\item [Q2] What is the inverse of $\left[\begin{array}{cc}
     \a &\b  \\
      \c& 1
 \end{array}\right]$ ?
@@ -78,9 +57,9 @@ $f'(x) =\athree x^2+\btwo x$
 \vskip 10pt
 \hrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%If you are interested in problems with graphs:
+%%%%%%%%%Q3: If you are interested in problems with graphs:
 
-\item Draw the graph of derivative of $f(x)$.
+\item [Q3] Draw the graph of derivative of $f(x)$.
 
 \begin{center}\begin{tikzpicture}
 \foreach \x/\y/\pos/\txt in {2/0/right/x,0/3/above/y}
@@ -96,6 +75,31 @@ $f'(x) =\athree x^2+\btwo x$
 \draw [gray, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=1.5:-1](\t,{0.2*(\a*(\t)^3-\b*(\t)^2+\c)})node[below]{$f(x)$};
 \draw [red, line width=1pt, smooth,shift={(1,0)}]plot[variable=\t, domain=-1:1.5](\t,{0.12*(\athree*(\t)^2-\btwo*\t})node[above]{$f'(x)$};
 \end{tikzpicture}\end{center}
+\vskip 10pt
+\hrule
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%Q 4 Now if you want to choose nice parameters and change it within easily throughout the exam (this is not good for randomization of the exams but gives some insights in mass creating), then use binary \i, \j,\k. You will have 2^3 version of the question depending on (\i,\j,\k)= (1,1,1) or (1,1,0) or (1,0,1) or (0,1,1) or (1,0,0) or (0,1,0) or (0,0,1) or (0,0,0).
+\tikzmath{\i=0;\j=1;\k=1;}
+
+%%%%%%%%%%%%% Set parameters for many values:
+\tikzmath{\a=int(3*\i*\j*\k+4*(1-\i)*\j*\k+5*\i*(1-\j)*\k+2*\i*\j*(1-\k)+6*(1-\i)*(1-\j)*\k+7*(1-\i)*\j*(1-\k)+8*\i*(1-\j)*(1-\k)+9*(1-\i)*(1-\j)*(1-\k));
+%%%%%%%
+\b=int(6*\i*\j*\k+3*(1-\i)*\j*\k+7*\i*(1-\j)*\k+4*\i*\j*(1-\k)+5*(1-\i)*(1-\j)*\k+8*(1-\i)*\j*(1-\k)+9*\i*(1-\j)*(1-\k)+2*(1-\i)*(1-\j)*(1-\k));
+%%%%%%%
+\c=int(4*\i*\j*\k+3*(1-\i)*\j*\k+5*\i*(1-\j)*\k+2*\i*\j*(1-\k)+6*(1-\i)*(1-\j)*\k+7*(1-\i)*\j*(1-\k)+8*\i*(1-\j)*(1-\k)+9*(1-\i)*(1-\j)*(1-\k));}
+%%%%%%%%%%%%%% I may have made the above too complicated for a simple problem that it is. But it is the most general form.
+\item[Q 4]  What is the derivative of $f(x)=\a x^3+\b x^2 +\c$?\\
+%%%%%%%%%%%%%% Solve for the solution
+\tikzmath{\athree=int(\a*3); \btwo=int(\b*2);}
+%%%%%%%%Solution:
+{\bf Solution:} $f'(x) =\athree x^2+\btwo x$ 
+%%%%%%%%%Or use the environment
+\ifthenelse{\boolean{show}}{\begin{sol}
+$f'(x) =\athree x^2+\btwo x$ 
+\end{sol}}{}
+\vskip 10pt
+\hrule
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{enumerate}
