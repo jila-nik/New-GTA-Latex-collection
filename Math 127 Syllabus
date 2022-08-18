@@ -1,0 +1,485 @@
+\documentclass[12pt]{article}
+\thispagestyle{empty}
+\usepackage{amsmath, amsthm, amssymb, multicol, enumerate,mathrsfs}
+\usepackage{framed,comment}
+\usepackage[english]{babel}
+\usepackage{verbatim, xcolor, ,colortbl,graphicx, hyperref, pgf,tikz,fp,tikz-3dplot,esint,soul}
+
+
+%\usepackage[table]{xcolor}
+
+\usepackage[margin=0.55in]{geometry}
+\usetikzlibrary{math,arrows,patterns,shapes,decorations.markings}
+\usepackage{ifthen}
+\usepackage{pgfplots}
+
+\usepackage{weva}
+\usepackage{aurical}
+%\usepackage{emerald}
+%\usepackage[T1]{fontenc}
+% Use \ECFAugie
+
+\definecolor{kblue}{RGB}{0,34,180}
+\definecolor{kgray}{RGB}{133,137,138}
+\definecolor{kyellow}{RGB}{255,200,45}
+\definecolor{kred}{RGB}{232,0,13}
+\definecolor{ksgray}{HTML}{DAD6CB}
+\definecolor{ksred}{HTML}{7A2531}
+\definecolor{ksyellow}{HTML}{F4AA00}
+\definecolor{mygreen}{rgb}{46,139,87}
+\definecolor{ao}{rgb}{0.23, 0.76, 0.72}
+\definecolor{wine}{rgb}{.5412,.0235,.0}
+\definecolor{navy}{RGB}{20,20,100}
+\definecolor{forest}{rgb}{0.16, 0.5, 0.0}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{cons}[thm]{Construction}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{hyp}[thm]{Hypothesis}
+\newtheorem{conjecture}[thm]{Conjecture}
+
+\newcommand{\LA}{\left\langle}
+\newcommand{\RA}{\right\rangle}
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\dsum}{\displaystyle\sum}
+\newcommand{\dlim}{\displaystyle\lim}
+\newcommand{\diint}{\displaystyle\iint}
+\newcommand{\diiint}{\displaystyle\iiint}
+\newcommand{\dinto}{\displaystyle\ointctrclockwise}
+\newcommand{\doiint}{\displaystyle\oiint}
+\newcommand{\rr}{\vec{\mathbf{r}}}
+\newcommand{\FF}{\vec{\mathbf{F}}}
+\newcommand{\GG}{\vec{\mathbf{G}}}
+\newcommand{\HH}{\vec{\mathbf{H}}}
+\newcommand{\NN}{\vec{\mathbf{N}}}
+\newcommand{\nn}{\vec{\mathbf{n}}}
+\renewcommand{\SS}{\vec{\mathbf{S}}}
+\newcommand{\RRR}{\mathcal{R}}
+\newcommand{\SSS}{\mathcal{S}}
+\newcommand{\WWW}{\mathcal{W}}
+\newcommand{\bccol}{\cellcolor{cyan!15}}
+\newcommand{\yccol}{\cellcolor{yellow!15}}
+\newcommand{\pccol}{\cellcolor{pink!15}}
+\newcommand{\tccol}{\cellcolor{teal!15}}
+
+\newcommand{\maincol}{yellow!20!cyan!10!}
+\newcommand{\maintxtcol}{\color{navy}}
+
+\newboolean{show}
+\setboolean{show}{true}
+\newboolean{showrubrics}
+\setboolean{showrubrics}{false}
+
+
+
+\newcommand{\rubrics}[1]
+{
+\ifthenelse{\boolean{showrubrics} }{{\color{orange}{\small\it Rubrics: #1}}}{}
+}
+
+
+
+
+\ifthenelse{\boolean{show}}{\newenvironment{onoff}{\color{black}}{\color{black}}}{\let\onoff\comment \let\endonoff\endcomment}
+
+\ifthenelse{\boolean{show}}{\newenvironment{onoffpic}{\color{black}}{\color{black}}}{\let\onoffpic\comment \let\endonoffpic\endcomment}
+
+\ifthenelse{\boolean{show}}{\newenvironment{sol}{\begin{framed}\color{teal} \underline{\bf \large Solution}: \\ \Fontskrivan   }{\color{black}\end{framed}\color{black}}}{\let\sol\comment \let\endsol\endcomment}
+
+%\ifthenelse{\boolean{show}}
+%{
+\usepackage{background}
+\backgroundsetup{contents=KU Mathematics, color=blue,scale=3.5, angle=0,opacity=0.01}
+%}
+%\SetWatermarkScale{0.8}}{}
+
+
+\tikzmath{\i=0;}
+\tikzmath{\j=0;}
+\tikzmath{\k=1;}
+\tikzmath{\l=1;}
+
+%%%%%%%%%%%%%%%%%%%%  IMPORTANT: Only choose one set %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzmath{\notes=1;}
+\tikzmath{\setone=1;}
+\tikzmath{\settwo=0;}
+\tikzmath{\setthree=0;}
+
+\tikzmath{\coursenum=127; 
+\fper=30; \moneper=20; \mtwoper=20; \wper=15; \hper=9; \icper=4; \qper=2;\dqper=2; %Final grade weight in percentage%
+% Midterms and Final Locations:
+\MidtermoneLocation="TBA";
+\MidtermtwoLocation="TBA";
+\FinalExamLocation="TBA";
+\withdrawone="Monday& September $12^{\text{th}}$, 2022"; \withdrawtwo="Wednesday& November $16^{\text{th}}$, 2022"; %Withdrawal dates%
+\final="Wednesday& December $14^{\text{th}}$"; \lastday="December $8^{th}$";
+\FallBreak=""; 
+\stopday="December 9";
+\midtermone="Wednesday& September $28^{\text{th}}$";%%Midterm1
+\midtermtwo="Wednesday& November $2^{\text{nd}}$";%Midterm2
+\midtermonecontent="Sections: 12.6, 12.7, 14.1-14.7";
+\midtermtwocontent="Sections: 14.7, 14.8, 15.1-15.6, 13.1-13.3, 16.1";
+\payone="September 12th";
+\paytwo="September 13th";
+\term="Fall 2022 "; 
+\lecone="Your Name&Email& Office C& Section& Time& Room ";
+}
+
+\begin{document}
+\begin{center}
+{\bf \huge Math \coursenum\, - Calculus III}\vskip 10pt
+
+{\bf \huge \term Syllabus}
+\vskip 10pt
+\end{center}
+
+
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol   Instructor Information}}
+ Students attend lectures three times per week MWF and they will attend laboratory sections two times per week (TR or MW) with a graduate teaching assistant.\\
+%Unless a student is enrolled in an enhanced section or time conflict section, they will attend lectures three times per week MWF and they will attend laboratory sections two times per week (TR or MW) with a graduate teaching assistant.
+
+\scalebox{0.9}{
+\begin{tabular}{||l|l|l|l|l|l||}
+\hline\hline
+ \yccol Instructor & \yccol Instructor's Email&\yccol Office &\bccol Section & \pccol Time & \tccol Classroom \\
+\hline\hline
+\lecone\\
+\hline 
+\end{tabular}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Disclaimers}}
+\begin{itemize}
+    \item [] This syllabus contains the basic information for MATH \coursenum. Students should regularly visit the course Canvas page  to find their exam scores, assignment scores, course announcements, assignments, detailed course schedule, and links to course materials.
+\item [] Students must \colorbox{yellow!20!}{\color{wine}\bf regularly check both their \href{https://outlook.office.com/mail/inbox}{KU email} and the \href{https://canvashelp.ku.edu/}{course Canvas page}}.
+\item [] The \colorbox{yellow!20!}{\color{wine}\bf``Total'' column of Canvas grade book is not accurate} and we will post an excel sheet, called \colorbox{yellow!20!}{\color{wine}\bf grade-calculator}, for you to compute your grade after each exam. 
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Textbook}}
+\begin{itemize}
+    \item [] {\bf Textbook:} Calculus Early Transcendentals, 4E, by Rogawski \& Adams 
+    \item [] {\bf Other Material Needed:}
+    \begin{itemize}
+   \item [] {\bf Achieve and iClicker App:}
+    \begin{itemize}
+    \item  Achieve is the online homework platform and is accessed through {\bf\color{wine}Canvas}.
+    \item  IClicker is used in {\bf\color{wine} lecture} to collect your answers to questions.
+    \item  You will have access to Achieve, iClicker and Ebook through ``First Day Access'' on Canvas. 
+    \item  Make sure to {\bf \color{wine}use your \href{https://outlook.office.com/mail/inbox}{KU email}} in Achieve and iClicker.
+    \item  Visit \href{https://www.iclicker.com/students/apps-and-remotes/apps}{https://www.iclicker.com/students/apps-and-remotes/apps} to down load an iClicker app.
+\end{itemize}
+\item [] {\bf Zoom App:} The classes and help room are in-person but some of the instructors may hold office hours on zoom. 
+\item []{\bf\colorbox{\maincol}{Calculators and Midterms/Final Exams:}} \colorbox{yellow!20!}{\bf\color{wine} Only basic or scientific calculators} will be permitted while taking exams. Calculators must not be able to perform calculus calculations (limits, derivatives, integrals, series) and must have no graphing capabilities. 
+\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\section{\colorbox{\maincol}{\maintxtcol Grading System}}
+
+\begin{itemize}
+\item []\scalebox{1.2}{
+\begin{tabular}{||l|l|l|l||}
+\hline\hline
+\tccol A &\bccol B & \yccol C & \pccol D \\
+\hline\hline
+$\geq 88\%$&$\geq 76\%$&$\geq 64\%$&$\geq 52\%$\\
+  \hline\hline
+\end{tabular}}
+    \item[] Note that there are no plus/minus grades in the calculus sequence. The letter grade cut-offs will not change at the end of the semester and there will not be a curve. \item []Most assignments and assessments will have extra credit opportunities.
+The following is a breakdown for MATH \coursenum\, showing the components of the course and how much each component is worth.
+\item []
+\scalebox{1.2}{
+\begin{tabular}{||p{6cm}|r||}
+\hline\hline
+\tccol Final Exam &\fper\%\\\hline \cellcolor{cyan!20!} Midterm 1 & \moneper\% \\\hline\bccol Midterm 2 & \mtwoper\%\\\hline\cellcolor{cyan!10!} Achieve Homework & \, \hper\%\\\hline\cellcolor{pink!30!} Lab Activities \& Worksheets &\wper\% \\\hline\cellcolor{orange!10!} iClickers &\, \icper\%\\\hline\cellcolor{yellow!20!} In-class Quizzes &\, \qper\%\\\hline\cellcolor{yellow!10!}Diagnostic Quizzes \tiny (Extra Credit) &\, \dqper\% \\
+\hline\hline
+\end{tabular}}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Midterm and Final Exams}}
+ Midterm exams are graded by MATH \coursenum\, instructors. Midterm Exams from  previous semester(s) will be posted on Canvas 10 days before the exam dates.\\
+
+
+\scalebox{0.9}{
+\begin{tabular}{||l|l|l|l|l|p{8.25cm}||}
+\hline\hline
+Exam &\yccol Day &\bccol Date & \pccol Time & \tccol Room&\cellcolor{cyan!10}Content \\
+ \hline\hline
+ Midterm 1& \midtermone & 5:50-7:50 PM & \MidtermoneLocation&\midtermonecontent\\
+ Midterm 2& \midtermtwo & 5:50-7:50 PM & \MidtermtwoLocation&\midtermtwocontent \\
+ Final Exam & \final & 4:30-7 PM &\FinalExamLocation&Accumulative\\
+  \hline\hline
+\end{tabular}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Withdrawal Dates }}
+
+\begin{tabular}{||l|l|p{11cm}|l||}
+\hline\hline
+ \yccol Day &\pccol Date & \bccol Type & \\
+\hline\hline
+\withdrawone &	Last day to withdraw/drop without a ``W''&\\
+\withdrawtwo & 	Last day to withdraw from a class or the University &\\
+\hline \hline
+\end{tabular}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Summary of the Structure of Assignments and Assessments}}
+
+
+
+\begin{tabular}{||l|p{14.5cm}||}
+\hline\hline
+\tccol Weekly Worksheets &\tccol  Consists of 2 parts: \textcircled{1} In-class Group Work \& Participation \textcircled{2} Individual portion \\
+\tccol& \tccol$2\times 1.5$ points for Group Work and lab participation per week ($30\%$ of the score).\\
+\tccol &\tccol Upload the individual portion to Canvas  to be graded by your grader. \\
+\tccol &\tccol($70\%$ of the score)  \\
+\tccol&\tccol Start early before lab to be prepared for Group Work. (Print pdf if possible.) \\
+\tccol&\tccol The individual portion of Worksheets are your written homework. Start before lab, watch videos related to the matrial and ask questions in lab.\\
+\tccol&\tccol  Due in the $2^{\text{nd}}$ lab of the week or upload by the Friday of the week.\\
+\hline\hline
+\bccol Achieve Homework&\bccol  Find a link on the week's Canvas module.\\
+\bccol&\bccol Achieve homework gives you instant feedback.\\
+\bccol&\bccol You have multiple attempts for each assignment.\\
+\hline\hline
+\cellcolor{cyan!10!}Diagnostic Quizzes &\cellcolor{cyan!10!} Find a link to them on the week's Canvas module. \\
+\cellcolor{cyan!10!}&\cellcolor{cyan!10!} They are fill-in-the-blanks, True/False and matching. \\
+\cellcolor{cyan!10!}&\cellcolor{cyan!10!} Take these quizzes as if you are taking exams. Be prepared and write all details of your work. Follow the same codes of academic integrity even though they are not proctored. \\
+\cellcolor{cyan!10!}&\cellcolor{cyan!10!} They help you practice in small chunks.\\
+\cellcolor{cyan!10!}&\cellcolor{cyan!10!} Extra credit. You have two or more attempts on each.\\
+\hline\hline
+\pccol In-class Quizzes &  \cellcolor{red!10!}They are low stake assessments that {\bf may} help in reducing the testing anxiety for other assessments by giving you practice. Each covers 2-3 sections of the book.   \\
+\hline\hline
+ \yccol Midterm \& Final &\yccol They are administered in the evening.\\
+  \yccol Exams &\yccol They come with review sessions and practice exams \\\hline\hline
+\end{tabular}\\
+
+{\bf \colorbox{yellow!30!}{Late Policy for Assignments:}}
+\begin{itemize}
+    \item []Achieve Homework can be completed after the deadline; assignments can be extended automatically through Achieve. All Achieve Homework assignments close permanently at 11:59pm on Thursday, \lastday. 
+     No late worksheets please! The solutions to worksheets will be posted on Canvas within a week from due date.  No late worksheet please.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol The Structure of Laboratory Section}}
+
+Laboratory sections (recitation sections) meet twice per week with a graduate teaching assistant. (Your lab either meets on TuTh or MW) Very little to no lecturing is expected in the lab (recitation) sections. Students will review the most recent material, work through problems that supplement lecture material, and have an opportunity to ask questions and receive feedback in a small classroom environment. $\wper\%$ of the final grade is earned through laboratory sections’ participation and worksheets; $30\%$ allocated for participation and $70\%$ for correct worksheets.  The participation points is taken in the lab when you work on worksheets with your groups.  The in-class quizzes will be proctored during your laboratory meetings.
+ Print the worksheets before the lab section if possible or write the questions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol The Structure of Lecture Section}}
+They are taught in the auditoriums. IClicker is used to take attendance. Print the lecture notes on the week's Canvas module before the class if possible.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol The Lecture and Lab Participation}}
+
+\begin{itemize}
+    \item [] \colorbox{\maincol}{Lecture Participation}
+    \begin{itemize}
+        \item [] The attendance in Lecture is taken using iClicker reef.
+        \item [] If you answer any iClicker question during a lecture, you will earn 1 point for participation for entire session (this is one time only in each class). If you answer any question correctly, you will earn 0.5 points.
+        \item [] The maximum iClicker  points to earn full credit in lecture attendance is $70$.
+        \item []You will have opportunity to earn up to $90$ iclicker points. 
+        \item [] You can access iClicker reef, for this course only, using the first day access.
+        \item [] It is recommended to download the app to your phones. \href{https://www.iclicker.com/students/apps-and-remotes/apps}{https://www.iclicker.com/students/apps-and-remotes/apps}
+    \end{itemize}
+
+
+
+   \item [] \colorbox{\maincol}{Laboratory (Recitation) Participation}
+   \begin{itemize}
+       \item [] By attending each lab and working on Group Work section of each lab worksheet in your groups you will earn attendance points.
+       \item[] The attendance for each lab will be added to your worksheet during the lab.  The total points possible points for  each lab is $1.5$ points.
+       \item []{\bf Rubrics for Attendance} in each lab is as follows:
+       \begin{itemize}
+           \item $0.5$ points for having  the questions ready in class, working in your group, asking questions and interacting with your group and the instructor.
+           \item $0.5$ points for contributing to the discussion in the group.
+           \item $0.5$ points for mostly correct answers to group work written in the worksheet in class.
+     
+       \end{itemize}
+       
+   \end{itemize}
+
+\item [] Please note that up to If you have an school sanctioned reason  that will cause you to miss class for more than $5$ consecutive working days or more than $10$ non-consecutive working days;  have the appropriate office contact us; if the reason you are missing class is personal or chronic illness, please contact  \href{https://access.ku.edu/}{https://access.ku.edu/} to document your illness. They will communicate with us. If you are absent  less than 5 days a semester,you still can earn $100\% $ for participation in the course. 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\colorbox{\maincol}{\maintxtcol Math Help}}
+Every instructor and graduate teaching assistant is available for help outside the classroom, see individual webpages to find times and locations. The Mathematics Help Room is in {\color{wine}Snow 651} and is staffed by helpful and competent mathematics graduate teaching assistants. \colorbox{yellow!50!}{Before searching for a private tutor}, be sure to visit either your instructor or the {\color{wine}Mathematics Help Room as they are free} for KU students. The schedule of Help Room will be posted on Canvas on the second week of classes. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\colorbox{\maincol}{\maintxtcol Group Work and Tutors}}
+ Students may discuss homework/Worksheet problems in groups, but each student is responsible for doing their own work and for turning in individual solutions. When a student works with a tutor, it is the responsibility of both the student and the tutor to ensure that it is the student who works to arrive at the solution of the problems. Tutors should not do student homework or provide solutions for assignments. Members of the class are encouraged to study together, but EACH must write out their own solutions to the assigned problems. Copying of another person's homework is not allowed. HOMEWORK IS A MAJOR PART OF THE LEARNING PROCESS IN MATHEMATICS.  It is essential that you work on problems on your own and do the homework on a regular basis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Prerequisite}}
+MATH 126 or MATH 146, with a grade of C- or higher.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Learning Objectives and Course Content}}
+The course covers multivariable functions; partial derivatives and their applications; multiple integrals and their applications; vector-valued functions, line and surface integrals; and Green’s, Gauss’s and Stokes’ Theorems, covering Chapters 13, 14, 15, 16, and 17 of the text. The precise sections to be covered are listed in the schedule given on Canvas. The objective of the course is to acquire mastery of the material covered in the course in the following senses: 
+\begin{enumerate}
+    \item 	Mathematical understanding, as demonstrated by the ability to solve appropriate mathematical problems.
+	\item Practical understanding, as demonstrated by the ability to solve appropriate word problems in the sciences, in engineering and in the social sciences.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Course Goals and Topics}}
+\begin{itemize}
+    \item [] By the end of MATH \coursenum, students should have begun to build fundamental knowledge and skills, so they can apply calculus to future STEM academic training and professional practice. Fundamental calculus knowledge and skills will be learned and evaluated based on specific objectives as follows.
+
+{\bf Calculus of Multivariable Functions (Chapters 14 and 15)}
+\begin{itemize}
+\item 	Represent graphs in lower dimensions using contour maps and level curves.
+\item 	Calculate partial derivatives of a multivariable function.
+\item 	Use the Chain Rule for implicit partial differentiation and related rates.
+\item 	Evaluate limits using the Squeeze Theorem, path dependency, or polar coordinates.
+\item 	Approximate values of differentiable functions using tangent planes and differentials.
+\item 	Use the gradient in optimization problems.
+\item 	Use multiple integrals in calculating volume.
+\item	Evaluate multiple integrals using transformations and the Jacobian.
+\end{itemize}
+\item [] {\bf Curves and Surfaces (Chapters 13 and 16)}
+\begin{itemize}
+\item	Parametrize curves using one-variable vector functions.
+\item 	Parametrize surfaces using two-variable vector functions.
+\item 	Calculate arc length and surface area of parametrized curves and surfaces.
+\end{itemize}
+
+\item [] {\bf Vector Calculus (Chapters 16 and 17)}
+\begin{itemize}
+\item 	Calculate work as a vector line integral.
+\item 	Calculate flux as a vector surface integral.
+\item 	Apply Green’s, Stoke’s, and the Divergence Theorem.
+\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Keys to Success in Math \coursenum}}
+\begin{itemize}
+    \item Join lecture and your laboratory section prepared to learn and engage with the material! Watch the videos if you need help.
+\item After each class, review the material and do the assigned work  and suggested homework in the textbook.
+\item	Prepare for the next class meeting:
+\begin{itemize}
+    \item Visit Canvas to check the schedule and announcements.
+\item Read the upcoming section in the textbook.
+\item 	Find help! Take advantage of both your lecturer and your laboratory leader’s office hours. Visit the Calculus Help Room! The help room schedule can be found in the course Canvas.
+\end{itemize}
+\item 	Study! Gather a group of friends and regularly work and study together using the Help room (Snow 651) or Calculus Discord's Server (invite will be sent by email).
+\item 	You will need a good background in algebra, trigonometry, and Calculus 1 and 2, Chapters 1-12 and Appendices A, B, and C can serve as an excellent reference for reviewing prerequisite material and doing practice problems.
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{{\colorbox{\maincol}{\maintxtcol General Comments on Study Habits}}}
+{\bf Regular class attendance} is important for success in this course. Even if you’ve taken a previous Calculus course, this course is likely to be taught from a more sophisticated perspective, and if you think this class will be review, you are probably mistaken. 
+You should expect to spend {\bf \color{red}at least two hours} studying outside of class {\bf \color{red}for every hour} spent in class. In contrast to most high school math classes, if you don’t understand the topics being covered, you should NOT assume that your instructor will repeat material until you understand or master it. Ideally, you should ask questions at the time in class. Of course, you will also probably need to spend time thinking things through on your own, but if you’ve tried that and are still confused, make use of the Calculus Help Room and instructor office hours. Don’t wait!  Mathematics is cumulative, so anything you don’t understand now is likely to keep giving you trouble as the semester goes on.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Policy on Students with Special Needs }}
+The KU Office of Student Access Services (SAC) coordinates accommodations and services for all eligible students with disabilities. If you have a disability and wish to request accommodations, you should contacted SAC as soon as possible (22 Strong Hall; 785-864-4064 (V/TTY); \href{http://access.ku.edu/}{http://access.ku.edu/}). We also recommend that you contact your instructor and graduate teaching assistant privately in regard to your needs in this course. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Religious Holidays}}
+Any student in this course who plans to observe a religious holiday which conflicts in any way with the course schedule or requirements should contact your instructor before the end of the third week of classes to discuss alternative accommodations.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Excused Absence and Making Up Missed Work}}
+{\bf Exams and Laboratory Section:}  Students with a conflict with another course or verifiable excuse, temporary orders necessitating the absence of those in the US Armed Forces, sanctioned university activities, or a medical crisis of themselves, a relative, or friend and living in a different time zone may be excused from being present. It is the responsibility of the student to initiate discussion with their instructor or graduate teaching assistant prior to the absence examination/test if possible. Students can formally request their exam to be rescheduled due to a conflict by completing an Exam Conflict form which will be forwarded 10 days before the exam is scheduled.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Achieve Registration}}
+This course is participating in an “Auto Access” program, which allows you access to your digital course materials on the first day of class at the most affordable price. Simply login to your course in Canvas and have access to your required materials beginning first day of class, removing the need to purchase any materials prior to coming to class.
+The required textbook, Achieve for Math \coursenum, is accessible in a 1-term digital subscription by the first day of class and is free through the add/drop deadline date of \payone. Students that remain in the course and not explicitly choose to “opt-out” will be charged a special reduced price for use of this content the entire semester. This charge will appear on your September tuition statement.
+Should you choose to opt-out of this program, you will lose access to the content effective \paytwo\, and will not be charged. However, you will need to purchase these materials at regular, non-discounted pricing from another reseller.
+The KU Bookstore will offer a print upgrade of this textbook should you prefer a printed version of the materials in addition to the digital version. Please email optout@ku.edu for ordering information.
+If you have any questions about this program, please direct them to optout@ku.edu
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Policy on Academic Misconduct}}
+You are required to abide by all KU policies on academic integrity. Cheating, plagiarism or other academic misconduct will result in a failing grade on the assignment in question, notification of the student’s dean, and usually further disciplinary sanctions, possibly including a failing grade in the course. 
+You are encouraged to collaborate with other students on the homework assignments. However, each student must write up his or her own solutions and acknowledge all collaborators. Copying someone else’s homework, or allowing someone else to copy yours, is considered to be a form of cheating. For more information, see KU’s official policies on academic misconduct at \href{http://policy.ku.edu/governance/USRR\#art2sect6}{http://policy.ku.edu/governance/USRR\#art2sect6}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Policy on Masks }}
+We follow the guideline in \href{https://policy.ku.edu/chancellor/public-health-safety-requirements}{University policy}. %Violations of the mask policy in classrooms are treated as academic misconduct. If you come to class without a mask, I will ask you to put one on. If you do not put on a mask when asked, you will have to leave class. Violations will be reported, and consequences will follow, up to and including suspension from the course.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{{\colorbox{\maincol}{\maintxtcol KU Firearm Policy}}}
+Individuals who choose to carry concealed handguns are solely responsible to do so in a safe and secure manner in strict conformity with \href{http://concealedcarry.ku.edu/information}{state and federal laws} and \href{https://policy.ku.edu/university-kansas-policy-weapons-including-firearms-effective-july-1-2017}{KU weapons policy}. Safety measures outlined in the KU weapons policy specify that a concealed handgun: 
+\begin{itemize}
+\item 	Must be under the constant control of the carrier.
+\item 	Must be out of view, concealed either on the body of the carrier, or backpack, purse, or bag   that remains under the carrier’s custody and control.   
+\item	Must be in a holster that covers the trigger area and secures any external hammer in an un-cocked position
+\item 	Must have the safety on, and have no round in the chamber.
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{{\colorbox{\maincol}{\maintxtcol Intellectual Property}}}
+
+\begin{itemize}
+    \item Course materials prepared by the instructor, together with the content of all lectures and review sessions presented by the instructor are the property of the instructor. 
+\item 	Video and audio recording of lectures and review sessions without the consent of the instructor is prohibited. 
+\item	Permission to make such recordings may be granted by the instructor on a case-by-case basis, on the condition that the individual making the recording uses these recordings only as a study aid. 
+\item	Unless explicit permission is obtained from the instructor, recordings of lectures and review sessions and course content may not be modified and must not be transferred or transmitted to any other person, whether or not that individual is enrolled in the course. 
+
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Commercial Note Taking }}
+Pursuant to the University of Kansas’ \href{https://policy.ku.edu/provost/commercial-note-taking}{Policy on Commercial Note-Taking Ventures}, commercial note-taking is not permitted in MATH \coursenum. Lecture notes and course materials may be taken for personal use, for the purpose of mastering the course material, and may not be sold to any person or entity in any form. Any student engaged in or contributing to the commercial exchange of notes or course materials will be subject to discipline, including academic misconduct charges, in accordance with University policy. Please note: note-taking provided by a student volunteer for a student with a disability, as a reasonable accommodation under the AAAC, is not the same as commercial note-taking and is not covered under this policy.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Grade Disputes}}
+All graded material will be become available on laboratory section’s Canvas. You can view the feedback by clicking on the grades. The instructors of MATH \coursenum\, will check the grading of any assignment if the assignment was graded within the past two weeks; after two weeks, the instructors are not obligated to check the grading of an assignment. Initially contact your GTA before contacting your lecturer for any grade disputes.
+\end{document}
+
+\section*{\colorbox{\maincol}{\maintxtcol }}
+
+\begin{tabular}{||p{5cm}cp{8cm}||}
+\hline\hline
+\rowcolor{\maincol}&\large& Content:\\
+\hline\hline
+\end{tabular}
