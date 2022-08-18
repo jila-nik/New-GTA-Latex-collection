@@ -1,0 +1,653 @@
+\documentclass[12pt]{article}
+\thispagestyle{empty}
+\usepackage{amsmath, amsthm, amssymb, multicol, enumerate,mathrsfs}
+\usepackage{framed,comment}
+\usepackage[english]{babel}
+\usepackage{verbatim, xcolor, ,colortbl,graphicx, hyperref, pgf,tikz,fp,tikz-3dplot,esint}
+
+
+%\usepackage[table]{xcolor}
+
+\usepackage[margin=0.55in]{geometry}
+\usetikzlibrary{math,arrows,patterns,shapes,decorations.markings}
+\usepackage{ifthen}
+\usepackage{pgfplots}
+
+\usepackage{weva}
+\usepackage{aurical}
+%\usepackage{emerald}
+%\usepackage[T1]{fontenc}
+% Use \ECFAugie
+
+\definecolor{kblue}{RGB}{0,34,180}
+\definecolor{kgray}{RGB}{133,137,138}
+\definecolor{kyellow}{RGB}{255,200,45}
+\definecolor{kred}{RGB}{232,0,13}
+\definecolor{ksgray}{HTML}{DAD6CB}
+\definecolor{ksred}{HTML}{7A2531}
+\definecolor{ksyellow}{HTML}{F4AA00}
+\definecolor{mygreen}{rgb}{46,139,87}
+\definecolor{ao}{rgb}{0.23, 0.76, 0.72}
+\definecolor{wine}{rgb}{.5412,.0235,.0}
+\definecolor{navy}{RGB}{20,20,100}
+\definecolor{forest}{rgb}{0.16, 0.5, 0.0}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{cons}[thm]{Construction}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{hyp}[thm]{Hypothesis}
+\newtheorem{conjecture}[thm]{Conjecture}
+
+\newcommand{\LA}{\left\langle}
+\newcommand{\RA}{\right\rangle}
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\dsum}{\displaystyle\sum}
+\newcommand{\dlim}{\displaystyle\lim}
+\newcommand{\diint}{\displaystyle\iint}
+\newcommand{\diiint}{\displaystyle\iiint}
+\newcommand{\dinto}{\displaystyle\ointctrclockwise}
+\newcommand{\doiint}{\displaystyle\oiint}
+\newcommand{\rr}{\vec{\mathbf{r}}}
+\newcommand{\FF}{\vec{\mathbf{F}}}
+\newcommand{\GG}{\vec{\mathbf{G}}}
+\newcommand{\HH}{\vec{\mathbf{H}}}
+\newcommand{\NN}{\vec{\mathbf{N}}}
+\newcommand{\nn}{\vec{\mathbf{n}}}
+\renewcommand{\SS}{\vec{\mathbf{S}}}
+\newcommand{\RRR}{\mathcal{R}}
+\newcommand{\SSS}{\mathcal{S}}
+\newcommand{\WWW}{\mathcal{W}}
+\newcommand{\bccol}{\cellcolor{cyan!15}}
+\newcommand{\bbccol}{\cellcolor{blue!15}}
+\newcommand{\yccol}{\cellcolor{yellow!15}}
+\newcommand{\pccol}{\cellcolor{pink!15}}
+\newcommand{\tccol}{\cellcolor{teal!15}}
+\newcommand{\occol}{\cellcolor{orange!10}}
+\newcommand{\maincol}{yellow!20!cyan!10!}
+\newcommand{\maintxtcol}{\color{navy}}
+
+\newboolean{show}
+\setboolean{show}{true}
+\newboolean{showrubrics}
+\setboolean{showrubrics}{false}
+
+
+
+\newcommand{\rubrics}[1]
+{
+\ifthenelse{\boolean{showrubrics} }{{\color{orange}{\small\it Rubrics: #1}}}{}
+}
+
+
+
+
+\ifthenelse{\boolean{show}}{\newenvironment{onoff}{\color{black}}{\color{black}}}{\let\onoff\comment \let\endonoff\endcomment}
+
+\ifthenelse{\boolean{show}}{\newenvironment{onoffpic}{\color{black}}{\color{black}}}{\let\onoffpic\comment \let\endonoffpic\endcomment}
+
+\ifthenelse{\boolean{show}}{\newenvironment{sol}{\begin{framed}\color{teal} \underline{\bf \large Solution}: \\ \Fontskrivan   }{\color{black}\end{framed}\color{black}}}{\let\sol\comment \let\endsol\endcomment}
+
+%\ifthenelse{\boolean{show}}
+%{
+\usepackage{background}
+\backgroundsetup{contents=KU Mathematics, color=blue,scale=3.5, angle=0,opacity=0.01}
+%}
+%\SetWatermarkScale{0.8}}{}
+
+
+\tikzmath{\i=0;}
+\tikzmath{\j=0;}
+\tikzmath{\k=1;}
+\tikzmath{\l=1;}
+
+%%%%%%%%%%%%%%%%%%%%  IMPORTANT: Only choose one set %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzmath{\notes=1;}
+\tikzmath{\setone=1;}
+\tikzmath{\settwo=0;}
+\tikzmath{\setthree=0;}
+
+\tikzmath{\i=0;}
+\tikzmath{\j=0;}
+\tikzmath{\k=1;}
+\tikzmath{\l=1;}
+
+%%%%%%%%%%%%%%%%%%%%  IMPORTANT: Only choose one set %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tikzmath{\notes=1;}
+\tikzmath{\setone=1;}
+\tikzmath{\settwo=0;}
+\tikzmath{\setthree=0;}
+
+
+\tikzmath{\coursenum=104; 
+\fper=25; \moneper=20; \mtwoper=20; \gper=10;\wper=6; \hper=10; \pcper=4; \qper=5;\pqper=2;\sqper=1;\total=int(\fper+\moneper+\mtwoper+\gper+\hper+\wper+\pcper+\qper);} %Final grade weight in percentage%
+
+\tikzmath{
+% Midterms and Final Locations:
+\MidtermoneLocation="Tentatively Budig 110";
+\MidtermtwoLocation="Tentatively Budig 110";
+\FinalExamLocation="(TBA)";
+\withdrawone="Monday& September $12^{\text{th}}$, 2022"; \withdrawtwo="Wednesday& November $16^{\text{th}}$, 2022"; %Withdrawal dates%
+ \final="Wednesday& December $14^{\text{th}}$"; \lastday="Dec. $8^{th}$";
+\FallBreak=""; 
+\stopday="12/9";
+\midtermone="Tuesday& September $27^{\text{th}}$";%%Midterm 1
+\midtermtwo="Tuesday& November $1^{\text{st}}$ ";%Midterm 2
+\midtermonecontent="Chapters 1,2,3, and Sections 4.1-4.2";
+\midtermtwocontent="Chapters 4, 5, 6 and 7";
+\term="Fall 2022 "; 
+%Reviews:
+\ReviewoneLocation="Wescoe 3139";
+\ReviewtwoLocation="Wescoe 3139";
+\FinalReviewLocation="Budig 110";
+\Reviewone="Saturday &9/24  & 10:00  – 12:00 PM, \ReviewoneLocation&";
+\Reviewtwo="Saturday &10/29  & 10:00  – 12:00 PM, \ReviewtwoLocation&";
+\practiceone="Sunday & 9/25 & Time TBA, Place: LEEP 2 &";
+\practicetwo=" Sunday &10/30 &  Time TBA, Place: LEEP 2&";
+\FinalReview="Friday &\stopday& 10:00 - 12:00 PM\FinalReviewLocation&";
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Let's talk about Gateway and choose a time.
+\papergatewayone="Wednesday& October $12^{\text{th}}$";  \papergatewaytwo=" Wednesday & October $12^{\text{th}}$";\gatewaylab="MTuWThF & Tentatively 1-5PM"; \gatewaylabpre="9-10 (10/17 -10/28)";%This needs to be fixed. Week 9-10? and dates.
+\springbreak="";
+\sileaders="Michael and Evans";
+}
+ 
+\tikzmath{\moregateway="$1^{\text{st}}$ recitation session of Week $8$";
+\gatewayvideos="http://people.ku.edu/~jila/Math\%20104/Math\%20104\%20Videos.htm";}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzmath{\passgrade=7;\passgradeup=int(\passgrade+1);\intro="Introduction and Factoring";\csoneone=" 1.1: Functions and Function Notation
+";\csonetwo="1.2: Domain and Range";\csonethree="1.3: Rate of Change and Behavior of Graphs";\csonefour="1.4: Composition of Functions";\csonefive="1.5: Transformation of Functions";   
+\csonesix="1.6: Absolute Value Functions";\csoneseven="1.7: Inverse Functions";\cstwoone="2.1/ 2.2: Linear Functions/ Graphs of Linear Functions";\cstwothree="2.3: Modeling with linear Functions";\csthreeone="3.1: Complex Numbers";\csthreetwo="3.2: Quadratic Functions";\csthreethree="3.3: Power Functions and Polynomial Functions";\csthreefour="3.4: Graphs of Polynomial Functions";\csthreefive="3.5: Dividing Polynomials";\csthreesix="3.6: Zeros of Polynomial functions";\csthreeseven="3.7: Rational Functions";\csthreeeight="3.8: Inverse and Radical Functions";\csfourone="4.1: Exponential Functions";\csfourtwo="4.2: Graphs of Exponential Functions";\csfourthree="4.3: Logarithmic Functions";\csfourfour="4.4: Graphs of Logarithmic Functions";\csfourfive="4.5: Logarithmic Properties";\csfoursix="4.6: Exponential and Logarithmic Equations";\csfourseven="4.7: Exponential and Logarithmic Models";\csfiveone="5.1: Angles";\csfivetwo="5.2: Unit Circle: Sine and Cosine Functions";\csfivethree="5.3: The Other Trigonometric Functions";\csfivefour="5.4: Right Triangle Trigonometry";\cssixone="6.1: Graphs of Sine and Cosine";\cssixtwo="6.2: Graphs of Other Trigonometric Functions";\cssixthree="6.3: Inverse Trigonometric Functions";\cssevenone="7.1: Solving Trigonometric Equations with Identities";\csseventwo="7.2: Sum and Difference Identities";\csseventhree="7.3: Double-Angle, Half-Angle, and Reduction Formula";\cssevenfour="7.4: Sum-to-Product and Product-to-Sum Formula";\cssevenfive="7.5: Solving Trigonometric Equations";\cssevensix="7.6: Modeling with Trigonometric Equations";\cseightone="8.1: Non-right Triangles: Law of Sines";\cseighttwo="8.2: Non-right Triangles: Law of Cosine";\cseightthree="8.3: Polar Coordinates";\cseightfour="8.4: Polar Coordinates: Graphs";\cseightfive="8.5: Polar Form of Complex Numbers";\cseightsix="8.6: Parametric Equations";\cseightseven="8.7: Parametric Equations: Graphs";\csnineone="9.1: Systems of Linear Equations: Two variable";\csninetwo="9.2: Systems of Linear Equations: Three Variables";\csninethree="9.3: Systems of Nonlinear Equations and Inequalities";\csninefive="9.5: Matrices and Matrix Operations";\csninefive="9.5: Matrices and Matrix Operations";\csninesix="9.6: Solving Systems with Gaussian Elimination";\cstenone="10.1: The Ellipse";\cstentwo="10.2: The hyperbola";\cstenthree="10.3: The Parabola";\catch="Review and Catch up";}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tikzmath{\name="Name&Email& Room&  Time& Zoom&";% \\&&&&&
+}
+
+\begin{document}
+
+
+\begin{center}
+{\bf \huge Math \coursenum\, - PreCalculus}\vskip 10pt
+
+{\bf \huge \term Syllabus}
+\vskip 10pt
+\end{center}
+
+
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Instructor's Information }}
+
+\scalebox{0.9}{
+\begin{tabular}{||l|l|l|l|l|l||}
+\hline\hline
+ \yccol Coordinator & \yccol Coordinator's Email&\yccol Office &\bccol Office hours & \pccol zoom ID & \tccol Zoom Passcode \\
+\hline 
+\name\\
+\hline
+\end{tabular}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Disclaimers}}
+\begin{itemize}
+    \item [] This syllabus contains the basic information for MATH \coursenum. Students should regularly visit the course Canvas page  to find their exam scores, assignment scores, course announcements, assignments, detailed course schedule, and links to course materials.
+\item [] Students must \colorbox{yellow!20!}{\color{wine}\bf regularly check both their \href{https://outlook.office.com/mail/inbox}{KU email} and the \href{https://canvashelp.ku.edu/}{course Canvas page}}.
+\item [] The \colorbox{yellow!20!}{\color{wine}\bf``Total'' column of Canvas grade book is not accurate} and we will post an excel sheet, called \colorbox{yellow!20!}{\color{wine}\bf grade-calculator}, for you to compute your grade after each exam. 
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Textbook}}
+\begin{itemize}
+    \item [] {\bf Textbook:}  Precalculus, OpenStax, Abramson, Precalculus 1e (The electronic version of this textbook is \colorbox{\maincol}{\bf free} and can be obtained at \href{https://openstax.org/details/books/precalculus}{https://openstax.org/details/books/precalculus}. (Physical copies are also available at KU bookstore.) 
+    \item [] {\bf Other Material Needed:}
+    \begin{itemize}
+     \item [] You will have access to WebAssign, and Ebook through ``\href{https://www.kubookstore.com/auto-access-faq}{Auto access}'' on Canvas. 
+\item [] {\bf Zoom App:} The classes and help room are in-person but some of the instructors may hold office hours on zoom. 
+\item []{\bf\colorbox{\maincol}{Calculators for Midterms/Final Exams:}} \colorbox{yellow!20!}{\bf\color{wine} Only basic or scientific calculators} will be permitted while taking exams. Calculators must not have $\int$, $\frac{d}{dx}$, or $\lim$ keys. (TI $30$ is recommended.) 
+\end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Learning Objective and Course Content}}
+\begin{multicols}{2}
+{\scriptsize \tiny
+\begin{enumerate}
+    \item [{\bf\maintxtcol Chapter 1}]: {\bf Functions}
+    \begin{enumerate} 
+        \item [Section] \csoneone
+         \item [Section]\csonetwo \item [Section]\csonethree \item [Section] \csonefour \item [Section] \csonefive \item [Section] \csonesix \item[Section] \csoneseven  
+    \end{enumerate}
+   \item [{\bf\maintxtcol Chapter 2}]: {\bf Linear Functions}
+   \begin{enumerate}
+       \item [Section]\cstwoone\item [Sections]\cstwothree
+   \end{enumerate}
+   \item [{\bf\maintxtcol Chapter 3}]: {\bf Polynomial and Rational} Functions
+\begin{enumerate}
+    \item [Section] \csthreeone \item [Section] \csthreetwo \item [Section] \csthreethree \item [Section] \csthreefour \item [Section] \csthreefive \item [Section] \csthreesix\item [Section] \csthreeseven \item [Section] \csthreeeight 
+\end{enumerate}
+   \item [{\bf\maintxtcol Chapter 4}]: {\bf Exponential and Logarithmic Functions}
+   
+   \begin{enumerate}
+       \item [Section]\csfourone \item [Section]\csfourtwo \item [Section]\csfourthree \item [Section]\csfourfour \item [Section]\csfourfive \item [Section]\csfoursix \item [Section]\csfourseven 
+   \end{enumerate}
+  
+    \item [{\bf\maintxtcol Chapter 5}]: {\bf Trigonometric Functions}
+    \begin{enumerate}
+        \item [Section]\csfiveone \item [Section]\csfivetwo \item [Section]\csfivethree \item [Section]\csfivefour 
+    \end{enumerate}
+   \item [{\bf\maintxtcol  Chapter 6}]: {\bf Periodic Functions}
+   \begin{enumerate}
+       \item [Section]\cssixone  \item [Section]\cssixtwo  \item [Section]\cssixthree 
+   \end{enumerate}
+    \item [{\bf\maintxtcol Chapter 7}]: {\bf Trigonometric Identities and Equations}
+    \begin{enumerate}
+        \item [Section] \cssevenone  \item [Section] \csseventwo  \item [Section] \csseventhree  \item [Section] \cssevenfour  \item [Section] \cssevenfive 
+    \end{enumerate}
+    \item [{\bf\maintxtcol Chapter 8}]: {\bf Further Applications of Trigonometric Functions}
+    \begin{enumerate}
+        \item [Section] \cseightone  \item [Section] \cseighttwo  \item [Section] \cseightthree  \item [Section] \cseightfour  \item [Section] \cseightfive  \item [Section] \cseightsix  \item [Section] \cseightseven  
+    \end{enumerate}
+    \item [{\bf\maintxtcol Chapter 9}]: {\bf Systems of Equations and Matrices}
+    \begin{enumerate}
+        \item [Section]\csnineone \item [Section]\csninetwo \item [Section]\csninethree  \item [Section]\csninefive \item [Section]\csninesix 
+    \end{enumerate}
+    \item [{\bf\maintxtcol Chapter10}]: {\bf Analytic Geometry}
+    \begin{enumerate}
+        \item [Sections] \cstenone, \cstentwo\\ and \cstenthree
+    \end{enumerate}
+ \end{enumerate}}
+\end{multicols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Course Goals and Topics:}}{\small
+\noindent The course is an introduction to the elementary functions (polynomial, rational, exponential,
+logarithmic, and trigonometric) and their properties. The objective of the course is to acquire
+mastery of the material covered in the course in the following senses: 
+\begin{enumerate}
+    \item []{\bf Analysis and Graphing of Functions} 
+    \begin{itemize}
+    \item 	Analyzing/ evaluating a function using a rule of the function, a table of values or a graph; using function notation; finding the domain and range of a function; writing the rule of a function; analyzing functions in applications; finding average rate of change; relating average the rate of change to the net change in piecewise defined and linear functions; recognizing extrema in  graphs or in quadratic models.
+    \item Using concepts of symmetry; intercepts, left‐ and right‐hand behavior, asymptotes, and transformations; to sketch the graph of various types of functions (constant, linear, quadratic, absolute value, piecewise‐defined, square root, cubic, polynomial, rational, exponential, and logarithmic).
+    \item  Writing equations of circle, ellipse, hyperbola given their descriptions. 
+\item 	Performing $+,-,\times,$ division, composition and inverse operations on functions; analyzing real-life application of these operations.  
+ 
+\end{itemize}
+\item [] {\bf Solutions of Equations and Inequalities }
+\begin{itemize}
+\item Solving  linear, quadratic or cubic  equations in one variable involving one or multiple parameter(s); solving equations involving radicals, rational expressions or absolute values; solving exponential and logarithmic equations.
+\item 	Solving systems of  linear equations; understanding the geometry of the solution(s); inconsistent, distinct point or infinite. Performing Gaussian reduction; $+,-,\times$ matrix operations. Knowing examples of non-commutative  matrix products. Recognizing a vector as a matrix. Solving systems of non-linear equations. 
+\item 	Solving linear, polynomial, rational or absolute value inequalities; by graphing. 
+\end{itemize}
+    \item []{\bf Trigonometry}
+\begin{itemize}
+\item Converting between radian measurement and degree measurement; understanding the relationship between radian and arc length of a circle; understanding angular velocity. 
+\item knowing six trigonometric values of all angles; whose reference angles are special angles $0,\pi/6,\pi/4,\pi/3$, and $\pi/2$.
+\item 	Solving for an unknown sides/angles within right triangles.
+\item 	 Graphing the six basic trigonometric functions and their arithmetic combinations; understanding the concepts of period, phase shift, amplitude, and vertical displacement. 
+\item 	 Deriving/verifying trigonometric identities, including but not limited to double angle, half angle, angle sum, and angle difference identities. 
+\item 	 Defining, graphing, and applying inverse trigonometric functions. 	 \item Solving  trigonometric equations; recognizing the difference between an identity and a trigonometric equation. 
+\item 	 Finding solutions of oblique triangles using the Law of Cosines and/or Law of Sines. 
+ 
+\item 	 Deriving the trigonometric form of complex numbers and perform calculations with them including products and quotients. 
+\item 	Converting between rectangular and polar coordinates;  graphing within the polar coordinate systems.
+\item Understanding basic parameterized curves; the conversion between parameterized curves and  a function rule; understanding parameterized form of a circle, ellipse and hyperbola. 
+\item Application of trigonometric functions including optimization; shadowing relating rates when one of the functions are linear.
+\end{itemize}
+\end{enumerate}}
+%\noindent {\bf The main goal of the course is to acquire mastery of the material covered in the course in the following senses:} 
+%\begin{enumerate}
+%    \item 	Mathematical understanding, as demonstrated by the ability to solve appropriate mathematical problems.
+%	\item Practical understanding, as demonstrated by the ability to solve appropriate word problems in the sciences, in engineering and in the social sciences.
+%\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\colorbox{\maincol}{\maintxtcol Grading System}}
+
+\begin{itemize}
+\item []\scalebox{1.2}{
+\begin{tabular}{||l|l|l|l||}
+\hline\hline
+\tccol A &\bccol B & \yccol C & \pccol D \\
+\hline\hline
+$\geq 88\%$&$\geq 76\%$&$\geq 64\%$&$\geq 50\%$\\
+  \hline\hline
+\end{tabular}}
+    \item[] Note that there are no plus/minus grades in the precalculus/calculus sequence. The letter grade cut-offs will not change at the end of the semester and there will not be a curve. \item []Most assignments and assessments will have extra credit opportunities.
+The following is a breakdown for MATH \coursenum\, showing the components of the course and how much each component is worth.
+\item []
+\scalebox{1.2}{
+\begin{tabular}{||p{9cm}|r||}
+\hline\hline
+\tccol Final Exam &\fper\%\\ \hline\cellcolor{cyan!30!} Midterm 1 & \moneper\% \\\hline\cellcolor{cyan!20!} Midterm 2 & \mtwoper\%\\\hline \bccol Gateway Exam & \, \gper\%\\\hline\cellcolor{cyan!10!} WebAssign Homework & \, \hper\%\\\hline\cellcolor{pink!30!} Individual Work Upload and In-class Group Work &\wper\% \\\hline\cellcolor{orange!10!} Participation &\, \pcper\%\\\hline\cellcolor{yellow!20!} In-class Quizzes &\, \qper\%\\\hline\cellcolor{yellow!10!}Practice Quizzes \tiny (Extra Credit) &\, \pqper\% \\
+\hline\cellcolor{yellow!10!}Various Surveys  \tiny (Extra Credit) &\, \sqper\% \\
+\hline\hline
+\end{tabular}}\\\vskip 10pt
+Total$=\fper+\moneper+\mtwoper+\gper+\hper+\wper+\pcper+\qper=\total$ and Extra credit: $\pqper+\sqper$
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Paper Gateway, Midterm and Final Exams}}
+
+
+ Paper Gateway exams and Midterm exams are graded by MATH \coursenum\, instructors. All questions in paper gateway exam is posted. Midterm Exams from  previous semester(s) will be posted on Canvas 10 days before the exam dates.\\
+
+
+\scalebox{0.75}{
+\begin{tabular}{||l|l|l|l|l|p{8.5cm}||}
+\hline\hline
+Exam &\yccol Day &\bccol Date & \pccol Time & \tccol Room&\cellcolor{cyan!10}Content \\
+ \hline\hline
+  Paper Gateway& \papergatewayone & During Class &In class  & Function Operations, Expression Simplification and Solving Equations\\
+ Midterm 1& \midtermone & 5:50-7:50 PM & \MidtermoneLocation&\midtermonecontent\\
+ Midterm 2& \midtermtwo & 5:50-7:50 PM & \MidtermtwoLocation&\midtermtwocontent \\
+ Final Exam & \final & 4:30-7 PM &\FinalExamLocation&Accumulative\\
+  \hline\hline
+\end{tabular}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Withdrawal Dates }}
+\begin{center}
+\scalebox{1.}{ \begin{tabular}{||l|l|p{9cm}|l||}
+\hline\hline
+ \yccol Day &\pccol Date & \bccol Type & \\
+\hline\hline
+\withdrawone &	Last day to withdraw/drop without a ``W''&\\
+\withdrawtwo & 	Last day to withdraw from a class or the University &\\
+\hline \hline
+\end{tabular}}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Summary of the Structure of Assignments and Assessments}}
+
+
+
+\begin{tabular}{||l|p{14.5cm}||}
+\hline\hline
+\bbccol Participation& \bbccol For every class, there is a lecture note or a worksheet. There are are questions in these notes and worksheet to e done in class. If you are contributing to the group work, you will earn $100\%$ of that day. If you are late or not participating, you may earn $50\%$ or $0\%$ of that day's attendance and will be marked ``late'' or ``absent''.   \\
+\hline\hline
+\occol Gateway Exam&  \occol Each exam contains 10 questions on Function Operation, Expression Simplification and Solving Equations. \\
+\occol & \occol Pass score is $\passgrade0\%$ or higher and full points will be awarded. \\
+\occol & \occol Any score below $\passgrade0\%$ is awarded zero points. \\
+\occol & \occol A paper Gateway exam will be given in the \moregateway. \\
+\occol & \occol If you didn't pass the paper gateway, multiple computerized retakes will be available in Weeks \gatewaylabpre~ in Snow 159.\\
+\hline\hline
+\yccol In-class Quizzes &  \yccol They are low stake assessments that {\bf may} help in reducing the testing anxiety for other assessments by giving you practice. Each covers 2-3 learning objectives. Five of these quizzes are in preparation for Gateway exams; no partial credit will be awarded on any individual questions.  \\
+\hline\hline
+\yccol Practice Quizzes &  \yccol Some of the quizzes come with a practice quiz to prepare you; to prepare you for that quiz. (Extra Credit.) You can find them on the weekly modules.  \\
+\hline\hline
+ \tccol Midterm \& Final &\tccol They are administered in the evening.\\
+  \tccol Exams &\tccol They come with review sessions and practice exams \\
+\hline\hline
+\bccol WebAssign Homework&\bccol  Find a link on the week's Canvas module.\\
+\bccol&\bccol WebAssign Homework gives you instant feedback.\\
+\bccol&\bccol You have multiple attempts for each assignment.\\
+\bccol&\bccol If you complete a week in advance, small extra credit will be awarded.\\
+\bccol&\bccol You can request  automatic extension on WebAssign a week past the due dates; to use extension, avoid the viewing of the solutions.\\
+\hline\hline
+\pccol  Worksheets: &\pccol There are twelve Worksheets during the semester. Each of these worksheet have \\
+\pccol Group work \&  &\pccol a section for notes, a few questions to do in groups and individual work questions. \\
+\pccol Individual Work  &\pccol Sometimes the worksheets are combined with lecture notes; they can look like any lecture notes but they are marked as worksheet.   \\
+\pccol &\pccol  Read the worksheets before the class; come in prepared and work on group work\\
+\pccol &\pccol  in your groups. Each member of groups should write a problem so make sure that you do your work. Ask questions from your instructor. You may work on the individual part of the worksheet together but write your own work and upload to Canvas or submit in class before due date. Up to 2 points of group work will be awarded in class and the individual work will be graded for correctness out of 8 points; total of 10 points.\\
+\hline\hline
+%\cellcolor{cyan!10!}Diagnostic Quizzes &\cellcolor{cyan!10!} Find a link to them on the week's Canvas module. \\
+%\cellcolor{cyan!10!}&\cellcolor{cyan!10!} They are fill-in-the-blanks, True/False and matching. \\
+%\cellcolor{cyan!10!}&\cellcolor{cyan!10!} Take these quizzes as if you are taking exams. Be prepared and write all details of your work. Follow the same codes of academic integrity even though they are not proctored. \\
+%\cellcolor{cyan!10!}&\cellcolor{cyan!10!} They help you practice in small chunks.\\
+%\cellcolor{cyan!10!}&\cellcolor{cyan!10!} Extra credit. You have two or more attempts on each.\\
+%\hline\hline
+\end{tabular}\\
+
+{\bf \colorbox{yellow!30!}{Late Policy for Assignments:}}
+\begin{itemize}
+    \item []WebAssign Homework can be completed after the deadline; assignments can be extended automatically through WebAssign. All WebAssign Homework assignments close permanently at 11:59pm on Thursday, \lastday. 
+     No late worksheets please! The solutions to worksheets will be posted on Canvas within a week from the due date.  No late worksheet please.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol The Structure of the Class}}
+
+Your class meets five times per week, at the same time of the day. Your instructor will go briefly over the material for a few minutes; you work in groups for the rest of the time; your instructor will visit each group or make quick instructions when you are working in groups. The first five chapters of the book is an extensive review of algebra; the next five sections cover trigonometry,  systems of equations,  parametric curves, and conical cross sections.    
+ Print the worksheets before the class if possible; or write the questions in your notebook. Having a computer in class helps a lot.   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol The Participation}}
+
+\begin{itemize}
+\item [(A)] If you have an school sanctioned reason  that will cause you to miss class for more than $5$ consecutive working days or more than $10$ non-consecutive working days;  have the appropriate office contact us; if the reason you are missing class is personal or chronic illness, please contact  \href{https://access.ku.edu/}{https://access.ku.edu/} to document your illness. They will communicate with us.
+
+\item [(B)] If you have an excused absence and your total absence does not fall in the first category, described in Part (A); notice that Part (C) is explaining that you can miss class up to $7$ days a semester and get $100\%$ attendance points. If you still wish to make up the points; please email us a documents such as a doctor's note; a COVID positive test, a court hearing letter, an accident police report and etc;  we will contact you with attendance make up instructions.  
+    \item [(C)]You can earn up to 100/90 of participation points; by the following instructions.
+ 
+   \begin{itemize}
+       \item  By attending each class and  working on each worksheets in your groups; you will earn $100\%$ participation for that day.
+       \item If you are late for the class, not attending or you are not participating, you may earn $50\%$ or $0\%$ participation for that day; it that case, you will be marked late or absent. 
+%       \item[] The total points possible points for  each class is $1.5$ points.
+%       \item []{\bf Rubrics for Attendance} in each class is as follows:
+%       \begin{itemize}
+%           \item $0.5$ points for having  the questions ready in class, working in your group, and asking questions;  interacting with your group and the instructor.
+%           \item $0.5$ points for contributing to the discussion in the group.
+%           \item $0.5$ points for mostly correct answers to group work of your worksheet written in the worksheet; note that the individual work is graded on correct answers only and it is separate grade from attendance.
+%       \end{itemize}
+     
+      \end{itemize} 
+      \item [(D)] Note that when the number of absence in class increases, students become overwhelmed with material; their chances of success decreases. Please come to class; bring your positive attitude; interact with your instructor and other students. Make sure your instructor knows who you are; they can help you when you need it. Come to class to make friends in your major; positive human interaction helps you with math and life in general; contributing to your success in both is on our agenda.
+   \end{itemize}
+   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\colorbox{\maincol}{\maintxtcol The Gateway Exams}}
+
+
+Students can earn a score of 0 or 10 on the Gateway. Students earn full credit by passing either the paper (written) Gateway Exam or  the computerized in-lab  Gateway Exam retakes.  Information about the WebAssign Gateway Exams, including deadlines and location is given below; we will confirm the information on the course's Canvas page closer to those dates.\\
+
+
+\scalebox{0.75}{
+\begin{tabular}{||l|l|l|l|l||}
+\hline\hline
+\rowcolor{orange!10!}Exam & Date(s) & Place & &\\
+\hline\hline
+\rowcolor{yellow!10!}\bf  Paper Gateway  \papergatewaytwo &  In Recitation  &   \href{https://people.ku.edu/~jila/Math\%20104/Math\%20104\%20Gateway\%20Answers.pdf}{Click for Questions} &\href{http://people.ku.edu/~jila/Math\%20104/Math\%20104\%20Videos.htm}{Click to Watch the prep-videos.}\\
+ \hline\hline
+\rowcolor{teal!10!}\bf Computerize Retake & Weeks \gatewaylabpre&Snow 159&\gatewaylab   \\
+ \hline\hline
+\end{tabular}}\\
+    
+
+A paper (written) Gateway Exam will be administered in laboratory (recitation) sections during the \moregateway. Students who correctly answer \foreach \m in {\passgrade,\passgradeup,...,9}{\m, } or 10 out of the 10 questions earn full credit and {\bf do not} need to retake the In-Lab Gateway Exam.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\colorbox{\maincol}{\maintxtcol Math Help}}
+Every instructor and graduate teaching assistant is available for help outside the classroom, see individual webpages to find times and locations. The Mathematics Help Room is in {\color{wine}Snow 651} and is staffed by helpful and competent mathematics graduate teaching assistants. \colorbox{yellow!50!}{Before searching for a private tutor}, be sure to visit either your instructor or the {\color{wine}Mathematics Help Room as they are free} for KU students. The schedule of Help Room will be posted on Canvas on the second week of classes. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{\colorbox{\maincol}{\maintxtcol Group Work and Tutors}}
+ Students may discuss homework/Worksheet problems in groups, but each student is responsible for doing their own work and for turning in individual solutions. When a student works with a tutor, it is the responsibility of both the student and the tutor to ensure that it is the student who works to arrive at the solution of the problems. Tutors should not do student homework or provide solutions for assignments. Members of the class are encouraged to study together, but EACH must write out their own solutions to the assigned problems. Copying of another person's homework is not allowed. HOMEWORK IS A MAJOR PART OF THE LEARNING PROCESS IN MATHEMATICS.  It is essential that you work on problems on your own and do the homework on a regular basis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Prerequisite}}
+MATH 002, or two years of high school algebra and a score of 22 or higher on ACT mathematics, or a qualifying score on the mathematics placement test. Open for only two hours credit for students with credit in MATH 101. Not open to students with credit in MATH 103. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Keys to Success in Math \coursenum}}
+\begin{itemize}
+    \item Come to class  prepared to learn and engage with the material! Watch the videos if you need help.
+\item After each class, review the material and do the assigned work ahead of their due dates.
+\item	Prepare for the next class meeting:
+\begin{itemize}
+    \item Visit Canvas to check the schedule and announcements.
+\item Read the upcoming section in the textbook.
+\item 	Find help! Take advantage of both your lecturer and your laboratory leader’s office hours. Visit the Calculus Help Room! The help room schedule can be found in the course Canvas.
+\end{itemize}
+\item 	Study! Gather a group of friends and regularly work and study together using the Help room (Snow 651).
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{{\colorbox{\maincol}{\maintxtcol General Comments on Study Habits}}}
+{\bf Regular class attendance} is important for success in this course. Even if you’ve taken a previous Precalculus/Calculus course, this course is likely to be taught from a more sophisticated perspective, and if you think this class will be review, you are probably mistaken. 
+You should expect to spend {\bf \color{red}at least two hours} studying outside of class {\bf \color{red}for every hour} spent in class. In contrast to most high school math classes, if you don’t understand the topics being covered, you should NOT assume that your instructor will repeat material until you understand or master it. Ideally, you should ask questions at the time in class. Of course, you will also probably need to spend time thinking things through on your own, but if you’ve tried that and are still confused, make use of the Calculus Help Room and instructor office hours. Don’t wait!  Mathematics is cumulative, so anything you don’t understand now is likely to keep giving you trouble as the semester goes on.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Supplemental Instruction (SI)}}
+
+  
+
+Supplemental Instruction, or SI, is available for this class.  SI Leaders are students who have taken the class and now, as SI Leaders, they attend the class lectures and lead engaging and activity-based sessions to review course material outside of the classroom.  The sessions are free, voluntary, and provide an opportunity for students to meet other students in class, discuss important concepts, and develop effective study strategies.  Data has shown that students who regularly attend and actively participate in SI Sessions have the potential to do well on exams and receive strong grades in their course.  Specific information about SI for this course including the days, times, campus locations, and Zoom URLs (and passcodes) of SI Sessions and Office Hours will be announced the second week of classes. For more information about SI, visit the Academic Learning Center website at \href{http://learning.ku.edu}{http://learning.ku.edu} and click on Supplemental Instruction from the main menu.  The SI Leaders for MATH \coursenum~this semester are \sileaders.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Policy on Students with Special Needs }}
+The KU Office of Student Access Services (SAC) coordinates accommodations and services for all eligible students with disabilities. If you have a disability and wish to request accommodations, you should contacted SAC as soon as possible (22 Strong Hall; \href{http://access.ku.edu/}{http://access.ku.edu/}). We also recommend that you contact your instructor and graduate teaching assistant privately in regard to your needs in this course. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Religious Holidays}}
+Any student in this course who plans to observe a religious holiday which conflicts in any way with the course schedule or requirements should contact your instructor before the end of the third week of classes to discuss alternative accommodations.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Excused Absence and Making Up Missed Work}}
+{\bf Exams and Laboratory Section:}  Students with a conflict with another course or verifiable excuse, temporary orders necessitating the absence of those in the US Armed Forces, sanctioned university activities, or a medical crisis of themselves, a relative, or friend and living in a different time zone may be excused from being present. It is the responsibility of the student to initiate discussion with their instructor or graduate teaching assistant prior to the absence examination/test if possible. Students can formally request their exam to be rescheduled due to a conflict by completing an Exam Conflict form which will be forwarded 10 days before the exam is scheduled.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Policy on Academic Misconduct}}
+You are required to abide by all KU policies on academic integrity. Cheating, plagiarism or other academic misconduct will result in a failing grade on the assignment in question, notification of the student’s dean, and usually further disciplinary sanctions, possibly including a failing grade in the course. 
+You are encouraged to collaborate with other students on the homework assignments. However, each student must write up his or her own solutions and acknowledge all collaborators. Copying someone else’s homework, or allowing someone else to copy yours, is considered to be a form of cheating. For more information, see KU’s official policies on academic misconduct at \href{http://policy.ku.edu/governance/USRR\#art2sect6}{http://policy.ku.edu/governance/USRR\#art2sect6}. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Policy on Masks }}
+We follow the guideline in \href{https://policy.ku.edu/chancellor/public-health-safety-requirements}{University policy}. %Violations of the mask policy in classrooms are treated as academic misconduct. If you come to class without a mask, I will ask you to put one on. If you do not put on a mask when asked, you will have to leave class. Violations will be reported, and consequences will follow, up to and including suspension from the course.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{{\colorbox{\maincol}{\maintxtcol KU Firearm Policy}}}
+Individuals who choose to carry concealed handguns are solely responsible to do so in a safe and secure manner in strict conformity with \href{http://concealedcarry.ku.edu/information}{state and federal laws} and \href{https://policy.ku.edu/university-kansas-policy-weapons-including-firearms-effective-july-1-2017}{KU weapons policy}. Safety measures outlined in the KU weapons policy specify that a concealed handgun: 
+\begin{itemize}
+\item 	Must be under the constant control of the carrier.
+\item 	Must be out of view, concealed either on the body of the carrier, or backpack, purse, or bag   that remains under the carrier’s custody and control.   
+\item	Must be in a holster that covers the trigger area and secures any external hammer in an un-cocked position
+\item 	Must have the safety on, and have no round in the chamber.
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{{\colorbox{\maincol}{\maintxtcol Intellectual Property}}}
+
+\begin{itemize}
+    \item Course materials prepared by the instructor, together with the content of all lectures and review sessions presented by the instructor are the property of the instructor. 
+\item 	Video and audio recording of lectures and review sessions without the consent of the instructor is prohibited. 
+\item	Permission to make such recordings may be granted by the instructor on a case-by-case basis, on the condition that the individual making the recording uses these recordings only as a study aid. 
+\item	Unless explicit permission is obtained from the instructor, recordings of lectures and review sessions and course content may not be modified and must not be transferred or transmitted to any other person, whether or not that individual is enrolled in the course. 
+
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Commercial Note Taking }}
+Pursuant to the University of Kansas’ \href{https://policy.ku.edu/provost/commercial-note-taking}{Policy on Commercial Note-Taking Ventures}, commercial note-taking is not permitted in MATH \coursenum. Lecture notes and course materials may be taken for personal use, for the purpose of mastering the course material, and may not be sold to any person or entity in any form. Any student engaged in or contributing to the commercial exchange of notes or course materials will be subject to discipline, including academic misconduct charges, in accordance with University policy. Please note: note-taking provided by a student volunteer for a student with a disability, as a reasonable accommodation under the AAAC, is not the same as commercial note-taking and is not covered under this policy.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\colorbox{\maincol}{\maintxtcol Grade Disputes}}
+All graded material will be become available on laboratory section’s Canvas. You can view the feedback by clicking on the grades. The instructors of MATH \coursenum\, will check the grading of any assignment if the assignment was graded within the past two weeks; after two weeks, the instructors are not obligated to check the grading of an assignment. Initially contact your Instructor before contacting your coordinator for any grade disputes.
+\end{document}
+
+\section*{\colorbox{\maincol}{\maintxtcol }}
+
+\begin{tabular}{||p{5cm}cp{8cm}||}
+\hline\hline
+\rowcolor{\maincol}&\large& Content:\\
+\hline\hline
+\end{tabular}
+
+
+
+
+
+
+
+Stuff from Fall 2019
+
+\tikzmath{\veryearlylearninggoals="Analysis and Graphing of Functions and Equations
+• Use functional notation.
+• Recognize and distinguish between functions and relations (equations).
+• Use concepts of symmetry, intercepts, left‐ and right‐hand behavior, asymptotes, and
+transformations to sketch the graph of various types of functions (constant, linear,
+quadratic, absolute value, piecewise‐defined, square root, cubic, polynomial, rational,
+exponential, and logarithmic) or relations (circle) given in description.
+• Determine the domain and range of a function.
+• Write the equation rule that describes a function (for types given above) or circle, ellipse,
+hyperbola given its description.
+• Use graphs of functions for analysis.
+• Find arithmetic combinations and composites of functions.
+• Find the inverse of a function.
+Solutions of Equations and Inequalities
+• Solve equations listed in the third bullet above, i.e., linear equations, quadratic equations
+by factoring and the quadratic formula, equations involving rational expressions, equations
+involving radicals, and equations involving absolute value expressions, along with
+equations involving exponential or logarithmic functions.
+• Solve inequalities of the following types: linear (in one and two variables), polynomial,
+rational, absolute value.
+• Solve systems of inequalities by graphing.
+• Apply equations from the first bullet in this core outcome to real‐world situations, including
+but not limited to depreciation, growth and decay, and max/min problems.
+• Examine and analyze data, make predictions/interpretations, and do basic modeling.
+• Solve systems of equations by various methods, including matrices.
+Trigonometry
+• Define the trigonometric functions using both a right triangle and the unit circle.
+• Define and interpret radian measurement. Recognize and apply circular functions as real‐
+valued functions.
+• Solve for unknown sides/angles within right triangles and know trigonometric function
+values for special angles (multiples of π/6 and π/4).
+• Analyze the graphs of the six basic trigonometric functions and their arithmetic
+combinations using the concepts of period, phase shift, amplitude, and displacement.
+• Derive/verify trigonometric identities, including but not limited to double angle, half angle,
+angle sum, and angle difference identities.
+• Define, graph, and apply inverse trigonometric functions.
+• Solve equations involving trigonometric functions.
+• Find solutions of oblique triangles using the Law of Cosines and/or Law of Sines.
+• Solve applied problems including but not limited to vectors.
+• Derive the trigonometric form of complex numbers and perform calculations with them
+including products and quotients.
+• Translate between rectangular and polar coordinates and graph within the polar coordinate
+system.
+";}
