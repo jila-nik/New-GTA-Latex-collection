@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\thispagestyle{empty}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{math}
+\begin{document}
+\begin{enumerate}
+    \item Circle $\color{teal}r=a \cos(\theta)$.
+        
+    \begin{center} %Polar Grid
+        \begin{tikzpicture}[scale=0.5]
+        \draw [line width=2pt,red,->](0,0)--(4.2,0);
+        \foreach \x in {1,2,3,4}
+        \draw[gray,dashed, line width=1 pt] (0,0)circle(\x cm);
+        \foreach \t in {30,45,60,90,120,135,150,180,210,225,240,270,300, 315,330}
+        \draw [dotted, teal,line width=1pt](0,0)--(\t:4);
+                \draw [line width=2pt,blue,smooth]plot[variable=\t,domain=0:360](\t:{2*cos(\t)});
+        \foreach \t in {0,45,90,135}
+        {\tikzmath{\r={2*cos(\t )};}
+        \filldraw [line width=2pt,cyan ](\t:\r)circle(2pt);}
+        \end{tikzpicture}
+    \end{center}
+    
+     \item Circle $\color{teal}r=a \sin(\theta)$.
+        
+    \begin{center} %Polar Grid
+        \begin{tikzpicture}[scale=0.5]
+        \draw [line width=2pt,red,->](0,0)--(4.2,0);
+        \foreach \x in {1,2,3,4}
+        \draw[gray,dashed, line width=1 pt] (0,0)circle(\x cm);
+        \foreach \t in {30,45,60,90,120,135,150,180,210,225,240,270,300, 315,330}
+        \draw [dotted, teal,line width=1pt](0,0)--(\t:4);
+                \draw [line width=2pt,blue,smooth]plot[variable=\t,domain=0:360](\t:{2*sin(\t)});
+        \foreach \t in {0,45,90,135}
+        {\tikzmath{\r={2*sin(\t )};}
+        \filldraw [line width=2pt,cyan ](\t:\r)circle(2pt);}
+        \end{tikzpicture}
+    \end{center}
+    
+     \item Cardioid $\color{teal}r=a+a \cos(\theta)$. (General form $r=a\pm a \cos(\theta)$ or $r=a\pm a\sin(\theta)$ for $a>0$.)
+        
+    \begin{center} %Polar Grid
+        \begin{tikzpicture}[scale=0.5]
+        \draw [line width=2pt,red,->](0,0)--(4.2,0);
+        \foreach \x in {1,2,3,4}
+        \draw[gray,dashed, line width=1 pt] (0,0)circle(\x cm);
+        \foreach \t in {30,45,60,90,120,135,150,180,210,225,240,270,300, 315,330}
+        \draw [dotted, teal,line width=1pt](0,0)--(\t:4);
+        \draw [line width=2pt,blue,smooth]plot[variable=\t,domain=0:360](\t:{2+2*cos(\t)});
+        \foreach \t in {0,45,90,135,180,225,270,315}
+        {\tikzmath{\r={2+2*cos(\t )};}
+        \filldraw [line width=2pt,cyan ](\t:\r)circle(2pt);}
+        \end{tikzpicture}
+    \end{center}
+    
+    
+    \item Cardioid $\color{teal}r=a+a \sin(\theta)$.
+        
+    \begin{center} %Polar Grid
+        \begin{tikzpicture}[scale=0.5]
+        \draw [line width=2pt,red,->](0,0)--(4.2,0);
+        \foreach \x in {1,2,3,4}
+        \draw[gray,dashed, line width=1 pt] (0,0)circle(\x cm);
+        \foreach \t in {30,45,60,90,120,135,150,180,210,225,240,270,300, 315,330}
+        \draw [dotted, teal,line width=1pt](0,0)--(\t:4);
+                \draw [line width=2pt,blue,smooth]plot[variable=\t,domain=0:360](\t:{2+2*sin(\t)});
+        \foreach \t in {0,45,90,135,180,225,270,315}
+        {\tikzmath{\r={2+2*sin(\t )};}
+        \filldraw [line width=2pt,cyan ](\t:\r)circle(2pt);}
+        \end{tikzpicture}
+    \end{center}
+\end{enumerate}    
+\end{document}
